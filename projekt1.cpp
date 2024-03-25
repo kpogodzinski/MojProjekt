@@ -10,6 +10,22 @@ unsigned long long silnia(int n) {
 	return n;
 }
 
+bool czyPierwsza(int n) {
+	if (n == 0 || n == 1)
+		return false;
+	if (n == 2)
+		return true;
+	if (n%2 == 0) 
+		return false;
+	
+	for (int i=3; i*i<=n; i+=2) {
+		if (n%i == 0)
+			return false;
+	}
+	
+	return true;
+}
+
 int main() {
 //    int a, b;
 //    cout << "Podaj liczbe calkowita ";
@@ -21,6 +37,7 @@ int main() {
         cout << "MENU" << endl;
         cout << "Podaj numer czynnosci, ktora chcesz wykonac" << endl;
         cout << "1. Silnia" << endl;
+        cout << "2. Pierwszosc" << endl;
         cout << "0. Wyjscie" << endl;
         cin >> wyjscie;
         
@@ -30,6 +47,18 @@ int main() {
         	cin>>n;
         	if (n < 0) cout<<"Niepoprawny argument."<<endl;
         	else cout<<n<<"! = "<<silnia(n)<<endl;
+        }
+        	
+		else if (wyjscie == 2) {
+        	int n;
+        	cout<<"\nPodaj liczbe: ";
+        	cin>>n;
+        	if (n < 0)
+				cout<<"Niepoprawny argument."<<endl;
+        	else if (czyPierwsza(n))
+        		cout<<"Podana liczba jest pierwsza."<<endl;
+        	else
+        		cout<<"Podana liczba nie jest pierwsza."<<endl;
 		}
     } while(wyjscie != 0);
     return 0;
